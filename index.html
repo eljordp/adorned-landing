@@ -167,10 +167,14 @@
     }
 
     .topbar .brand {
-      font-family: 'Instrument Serif', serif;
-      font-size: 1.3rem;
-      color: #fff;
-      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+    }
+
+    .topbar .brand img {
+      height: 44px;
+      width: auto;
+      filter: brightness(0) invert(1);
     }
 
     .topbar-right {
@@ -897,9 +901,9 @@
       border-top: 1px solid rgba(0,0,0,0.06);
     }
 
-    footer .brand {
-      font-family: 'Instrument Serif', serif;
-      font-size: 1.1rem;
+    footer .brand img {
+      height: 40px;
+      width: auto;
     }
 
     footer .foot-links {
@@ -1168,7 +1172,7 @@
 <body>
 
   <div class="topbar">
-    <div class="brand">Aesthetics By Kayy</div>
+    <div class="brand"><img src="abk.jpg" alt="Aesthetics By Kayy"></div>
     <div class="topbar-right">
       <a href="#services">Services</a>
       <a href="#locations">Find Us</a>
@@ -1341,7 +1345,7 @@
   </section>
 
   <footer>
-    <div class="brand">Aesthetics By Kayy</div>
+    <div class="brand"><img src="abk.jpg" alt="Aesthetics By Kayy"></div>
     <div class="foot-links">
       <a href="https://www.instagram.com/aesthetics_bykayy/" target="_blank">Instagram</a>
       <a href="mailto:info@baehawaii.com">Email</a>
