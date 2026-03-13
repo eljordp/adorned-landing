@@ -3,459 +3,640 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ADORNED | Luxury Aesthetics by Mikayla</title>
+  <title>Aesthetics By Kay | Brows & Esthetics Hawaii</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --cream: #FAF7F2;
-      --charcoal: #2A2A2A;
-      --warm-gray: #8A8178;
-      --gold: #C4A87C;
-      --light-gold: #E8DCCC;
-      --white: #FFFFFF;
+      --bg: #FDFBF8;
+      --ink: #1a1a1a;
+      --muted: #9b9590;
+      --blush: #f0e4dd;
+      --warm: #d4b5a0;
+      --deep: #3d2b1f;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', sans-serif;
-      color: var(--charcoal);
-      background: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      color: var(--ink);
+      background: var(--bg);
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    /* NAV */
-    nav {
+    a { color: inherit; text-decoration: none; }
+
+    /* TOPBAR */
+    .topbar {
       position: fixed;
       top: 0;
       width: 100%;
-      padding: 1.25rem 2rem;
+      z-index: 100;
+      padding: 1.5rem 3rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 100;
-      background: rgba(250, 247, 242, 0.9);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(196, 168, 124, 0.15);
+      mix-blend-mode: difference;
     }
 
-    .logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 400;
-      letter-spacing: 0.25em;
-      color: var(--charcoal);
+    .topbar .brand {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.3rem;
+      color: #fff;
+      letter-spacing: 0.02em;
     }
 
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
 
-    .nav-links a {
-      text-decoration: none;
-      color: var(--warm-gray);
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
+    .topbar-right a {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      font-weight: 400;
-      transition: color 0.3s;
+      color: #fff;
+      transition: opacity 0.3s;
     }
 
-    .nav-links a:hover { color: var(--charcoal); }
+    .topbar-right a:hover { opacity: 0.6; }
 
-    /* HERO */
+    /* HERO — full bleed, editorial */
     .hero {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 6rem 2rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       position: relative;
     }
 
-    .hero-badge {
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.5rem;
-      font-weight: 500;
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      padding: 4rem 3rem 4rem;
     }
 
-    .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 8vw, 6rem);
-      font-weight: 300;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
+    .hero-left h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      font-weight: 400;
+      line-height: 0.95;
+      margin-bottom: 2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-left h1 em {
+      font-style: italic;
+      color: var(--warm);
+    }
+
+    .hero-left .hero-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      line-height: 1.8;
+      max-width: 360px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-left .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 0.5rem;
+      width: fit-content;
+      transition: gap 0.3s;
+    }
+
+    .hero-left .hero-cta:hover { gap: 1.5rem; }
+
+    .hero-left .hero-cta .arrow {
+      font-size: 1.1rem;
+      transition: transform 0.3s;
+    }
+
+    .hero-right {
+      background: var(--blush);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right .photo-placeholder {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-location {
+      position: absolute;
+      bottom: 3rem;
+      left: 3rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* MARQUEE */
+    .marquee {
+      padding: 1.5rem 0;
+      overflow: hidden;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .marquee-inner {
+      display: flex;
+      gap: 3rem;
+      animation: scroll 20s linear infinite;
+      width: max-content;
+    }
+
+    .marquee-inner span {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1rem;
+      white-space: nowrap;
+      color: var(--muted);
       letter-spacing: 0.05em;
     }
 
-    .hero p {
-      font-size: 1rem;
-      color: var(--warm-gray);
-      max-width: 480px;
-      line-height: 1.7;
-      margin-bottom: 2.5rem;
-      font-weight: 300;
+    .marquee-inner span::after {
+      content: ' \2022';
+      margin-left: 3rem;
+      color: var(--warm);
     }
 
-    .btn {
-      display: inline-block;
-      padding: 1rem 3rem;
-      background: var(--charcoal);
-      color: var(--cream);
-      text-decoration: none;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-weight: 500;
-      transition: all 0.3s;
-    }
-
-    .btn:hover {
-      background: var(--gold);
-      color: var(--white);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--charcoal);
-      border: 1px solid var(--charcoal);
-    }
-
-    .btn-outline:hover {
-      background: var(--charcoal);
-      color: var(--cream);
-    }
-
-    /* DIVIDER */
-    .divider {
-      width: 40px;
-      height: 1px;
-      background: var(--gold);
-      margin: 0 auto;
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     /* SERVICES */
     .services {
-      padding: 6rem 2rem;
-      text-align: center;
-    }
-
-    .section-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-      font-weight: 500;
-    }
-
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 300;
-      margin-bottom: 3.5rem;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      max-width: 960px;
+      padding: 8rem 3rem;
+      max-width: 1100px;
       margin: 0 auto;
     }
 
-    .service-card {
-      background: var(--white);
-      padding: 3rem 2rem;
-      text-align: center;
-      transition: transform 0.3s;
-    }
-
-    .service-card:hover { transform: translateY(-4px); }
-
-    .service-icon {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      display: block;
-    }
-
-    .service-card h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-weight: 400;
-      margin-bottom: 0.75rem;
-    }
-
-    .service-card p {
-      font-size: 0.85rem;
-      color: var(--warm-gray);
-      line-height: 1.7;
-      font-weight: 300;
-    }
-
-    /* ABOUT */
-    .about {
-      padding: 6rem 2rem;
+    .services-header {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 4rem;
     }
 
-    .about-inner {
-      max-width: 900px;
+    .services-header h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .services-header a {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 0.3rem;
+    }
+
+    .service-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-row {
+      display: grid;
+      grid-template-columns: 2fr 3fr auto;
+      align-items: center;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      transition: background 0.3s;
+      cursor: default;
+    }
+
+    .service-row:last-child { border-bottom: 1px solid rgba(0,0,0,0.08); }
+
+    .service-row:hover { background: rgba(0,0,0,0.015); margin: 0 -1.5rem; padding: 2rem 1.5rem; }
+
+    .service-row h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+
+    .service-row p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .service-row .tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--warm);
+      background: rgba(212,181,160,0.12);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    /* SPLIT SECTION */
+    .split {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
+      min-height: 80vh;
     }
 
-    .about-image {
-      width: 100%;
-      aspect-ratio: 3/4;
-      background: var(--light-gold);
+    .split-image {
+      background: var(--deep);
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .about-image span {
-      font-size: 0.7rem;
+    .split-image span {
+      font-size: 0.65rem;
       letter-spacing: 0.15em;
-      color: var(--warm-gray);
       text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
     }
 
-    .about-text h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.25rem;
-      font-weight: 300;
+    .split-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem;
+      background: var(--blush);
+    }
+
+    .split-content .label {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--warm);
       margin-bottom: 1.5rem;
     }
 
-    .about-text p {
-      font-size: 0.9rem;
-      color: var(--warm-gray);
-      line-height: 1.8;
-      font-weight: 300;
-      margin-bottom: 1rem;
+    .split-content h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
     }
 
-    .about-text .btn { margin-top: 1rem; }
+    .split-content p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 400px;
+      margin-bottom: 2rem;
+    }
+
+    .split-content .link {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 0.3rem;
+      width: fit-content;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
 
     /* LOCATIONS */
     .locations {
-      padding: 6rem 2rem;
-      text-align: center;
-      background: var(--white);
-    }
-
-    .locations-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      max-width: 700px;
+      padding: 8rem 3rem;
+      max-width: 1100px;
       margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem;
     }
 
-    .location-card {
-      padding: 3rem 2rem;
-      border: 1px solid var(--light-gold);
+    .loc-header {
+      grid-column: 1 / -1;
+      margin-bottom: 2rem;
     }
 
-    .location-card h3 {
-      font-family: 'Cormorant Garamond', serif;
+    .loc-header h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 400;
+    }
+
+    .loc-card {
+      padding: 2.5rem;
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: border-color 0.3s;
+    }
+
+    .loc-card:hover { border-color: var(--warm); }
+
+    .loc-card h3 {
+      font-family: 'Instrument Serif', serif;
       font-size: 1.6rem;
       font-weight: 400;
       margin-bottom: 0.5rem;
     }
 
-    .location-card .days {
-      font-size: 0.7rem;
+    .loc-card .schedule {
+      font-size: 0.65rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.75rem;
-      font-weight: 500;
+      color: var(--warm);
+      margin-bottom: 1rem;
     }
 
-    .location-card p {
-      font-size: 0.85rem;
-      color: var(--warm-gray);
-      font-weight: 300;
+    .loc-card p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
     }
 
-    /* CTA */
-    .cta {
-      padding: 8rem 2rem;
+    /* BOTTOM CTA */
+    .bottom-cta {
+      padding: 10rem 3rem;
       text-align: center;
-      background: var(--charcoal);
-      color: var(--cream);
+      position: relative;
     }
 
-    .cta .section-title { color: var(--cream); margin-bottom: 1.5rem; }
-
-    .cta p {
-      color: var(--warm-gray);
-      font-size: 0.95rem;
-      font-weight: 300;
-      margin-bottom: 2.5rem;
-      max-width: 440px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.7;
+    .bottom-cta h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: 2rem;
     }
 
-    .cta .btn {
-      background: var(--gold);
-      color: var(--white);
+    .bottom-cta h2 em { font-style: italic; color: var(--warm); }
+
+    .bottom-cta .book-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--bg);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: transform 0.3s, background 0.3s;
     }
 
-    .cta .btn:hover {
-      background: var(--cream);
-      color: var(--charcoal);
+    .bottom-cta .book-btn:hover {
+      transform: scale(1.08);
+      background: var(--deep);
     }
 
     /* FOOTER */
     footer {
-      padding: 3rem 2rem;
-      text-align: center;
-      background: var(--charcoal);
-      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(0,0,0,0.06);
     }
 
-    footer .logo {
-      color: var(--cream);
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
+    footer .brand {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.1rem;
     }
 
-    .social-links { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 1.5rem; }
+    footer .foot-links {
+      display: flex;
+      gap: 2rem;
+    }
 
-    .social-links a {
-      color: var(--warm-gray);
-      text-decoration: none;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
+    footer .foot-links a {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
+      color: var(--muted);
       transition: color 0.3s;
     }
 
-    .social-links a:hover { color: var(--gold); }
+    footer .foot-links a:hover { color: var(--ink); }
 
-    footer p {
-      font-size: 0.7rem;
-      color: rgba(138,129,120,0.5);
-      letter-spacing: 0.1em;
+    footer .copy {
+      font-size: 0.65rem;
+      color: var(--muted);
     }
 
     /* MOBILE */
     @media (max-width: 768px) {
-      .nav-links { display: none; }
+      .topbar { padding: 1.2rem 1.5rem; }
+      .topbar-right a:not(:last-child) { display: none; }
 
-      .about-inner {
+      .hero {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
-        text-align: center;
+        min-height: auto;
       }
 
-      .about-image { max-width: 320px; margin: 0 auto; }
+      .hero-left {
+        padding: 8rem 1.5rem 3rem;
+        min-height: 60vh;
+        justify-content: end;
+      }
 
-      .locations-grid { grid-template-columns: 1fr; }
+      .hero-right {
+        min-height: 50vh;
+      }
 
-      .services-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .hero-location { left: 1.5rem; bottom: 1.5rem; }
+
+      .services { padding: 5rem 1.5rem; }
+      .services-header { flex-direction: column; align-items: start; gap: 1rem; }
+
+      .service-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+
+      .service-row .tag { width: fit-content; }
+
+      .split {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .split-image { min-height: 50vh; }
+      .split-content { padding: 3rem 1.5rem; }
+
+      .locations {
+        grid-template-columns: 1fr;
+        padding: 5rem 1.5rem;
+      }
+
+      .bottom-cta { padding: 6rem 1.5rem; }
+
+      footer {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+        padding: 2rem 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <div class="logo">ADORNED</div>
-    <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#locations">Locations</a></li>
-      <li><a href="https://baehawaii.square.site/s/appointments" target="_blank">Book Now</a></li>
-    </ul>
-  </nav>
+  <div class="topbar">
+    <div class="brand">Aesthetics By Kay</div>
+    <div class="topbar-right">
+      <a href="#services">Services</a>
+      <a href="#locations">Find Us</a>
+      <a href="https://baehawaii.square.site/s/appointments" target="_blank">Book</a>
+    </div>
+  </div>
 
   <section class="hero">
-    <div class="hero-badge">Luxury Aesthetics &middot; Big Island, Hawaii</div>
-    <h1>ADORNED</h1>
-    <p>Results-driven brow, lash, and skin treatments. Enhancing your natural beauty with precision and care.</p>
-    <a href="https://baehawaii.square.site/s/appointments" target="_blank" class="btn">Book Your Appointment</a>
+    <div class="hero-left">
+      <h1>Brows &<br><em>Esthetics</em></h1>
+      <p class="hero-sub">Permanent makeup, lash lifts, laser treatments & esthetics on the Big Island. Results you can see, care you can feel.</p>
+      <a href="https://baehawaii.square.site/s/appointments" target="_blank" class="hero-cta">
+        Book an appointment <span class="arrow">&rarr;</span>
+      </a>
+      <div class="hero-location">Kailua Kona, Hawaii</div>
+    </div>
+    <div class="hero-right">
+      <span class="photo-placeholder">[ Hero image ]</span>
+    </div>
   </section>
 
+  <div class="marquee">
+    <div class="marquee-inner">
+      <span>Powder Brows</span>
+      <span>Lip Blush</span>
+      <span>Eyeliner</span>
+      <span>Korean Lash Lift</span>
+      <span>Brow Lamination</span>
+      <span>Laser Hair Removal</span>
+      <span>Facials</span>
+      <span>PMU Training</span>
+      <span>Powder Brows</span>
+      <span>Lip Blush</span>
+      <span>Eyeliner</span>
+      <span>Korean Lash Lift</span>
+      <span>Brow Lamination</span>
+      <span>Laser Hair Removal</span>
+      <span>Facials</span>
+      <span>PMU Training</span>
+    </div>
+  </div>
+
   <section id="services" class="services">
-    <div class="section-label">What We Offer</div>
-    <h2 class="section-title">Services</h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <span class="service-icon">&mdash;</span>
-        <h3>Brow Enhancements</h3>
-        <p>Expertly shaped and defined brows tailored to your unique features for a naturally polished look.</p>
+    <div class="services-header">
+      <h2>Services</h2>
+      <a href="https://baehawaii.square.site/s/appointments" target="_blank">View all & book &rarr;</a>
+    </div>
+    <div class="service-list">
+      <div class="service-row">
+        <h3>Powder Brows</h3>
+        <p>Soft, filled-in brow look using permanent makeup. Natural or bold — customized to your face shape and skin tone.</p>
+        <span class="tag">Permanent Makeup</span>
       </div>
-      <div class="service-card">
-        <span class="service-icon">&mdash;</span>
-        <h3>Lash Enhancements</h3>
-        <p>Full, fluttery lashes customized to complement your eye shape and desired level of drama.</p>
+      <div class="service-row">
+        <h3>Lip Blush</h3>
+        <p>Semi-permanent lip color that enhances your natural lip shape and adds a healthy, flushed tone.</p>
+        <span class="tag">Permanent Makeup</span>
       </div>
-      <div class="service-card">
-        <span class="service-icon">&mdash;</span>
-        <h3>Skin Treatments</h3>
-        <p>Targeted facials and skin therapies designed to reveal your healthiest, most radiant complexion.</p>
+      <div class="service-row">
+        <h3>Eyeliner</h3>
+        <p>Wake up with perfectly defined eyes. Subtle lash line or classic wing — your call.</p>
+        <span class="tag">Permanent Makeup</span>
+      </div>
+      <div class="service-row">
+        <h3>Korean Lash Lift</h3>
+        <p>Natural lash curl and lift that opens up your eyes. No extensions, no maintenance.</p>
+        <span class="tag">Lash & Brow</span>
+      </div>
+      <div class="service-row">
+        <h3>Brow Lamination</h3>
+        <p>Fluffy, brushed-up brows that stay in place. The effortless full-brow look.</p>
+        <span class="tag">Lash & Brow</span>
+      </div>
+      <div class="service-row">
+        <h3>Laser Hair Removal</h3>
+        <p>Smooth skin, long-term results. Safe and effective treatments for all areas.</p>
+        <span class="tag">Laser</span>
+      </div>
+      <div class="service-row">
+        <h3>Facials & Skin</h3>
+        <p>Targeted treatments to clear, brighten, and restore your skin's natural glow.</p>
+        <span class="tag">Esthetics</span>
       </div>
     </div>
   </section>
 
-  <section id="about" class="about">
-    <div class="about-inner">
-      <div class="about-image">
-        <span>[ Your photo here ]</span>
-      </div>
-      <div class="about-text">
-        <div class="section-label">Meet Your Aesthetician</div>
-        <h2>Mikayla</h2>
-        <p>With a passion for enhancing natural beauty, Mikayla brings luxury aesthetics to the Big Island of Hawaii. Every treatment is personalized, every detail intentional.</p>
-        <p>Whether you're visiting Waimea or Kona, you'll receive the same elevated, results-driven experience.</p>
-        <a href="https://www.instagram.com/aesthetics_bykayy/" target="_blank" class="btn btn-outline">Follow on Instagram</a>
-      </div>
+  <section class="split">
+    <div class="split-image">
+      <span>[ Photo ]</span>
+    </div>
+    <div class="split-content">
+      <div class="label">About</div>
+      <h2>Meet Mikayla</h2>
+      <p>Licensed esthetician and permanent makeup artist based on the Big Island. Mikayla blends technique with artistry — every treatment is tailored, every result intentional.</p>
+      <a href="https://www.instagram.com/aesthetics_bykayy/" target="_blank" class="link">
+        Follow on Instagram &rarr;
+      </a>
     </div>
   </section>
 
   <section id="locations" class="locations">
-    <div class="section-label">Where to Find Us</div>
-    <h2 class="section-title">Locations</h2>
-    <div class="locations-grid">
-      <div class="location-card">
-        <h3>Waimea</h3>
-        <div class="days">Tuesday &ndash; Thursday</div>
-        <p>DM on Instagram to book your Waimea appointment.</p>
-      </div>
-      <div class="location-card">
-        <h3>Kona</h3>
-        <div class="days">Friday &ndash; Saturday</div>
-        <p>Book online through our scheduling link below.</p>
-      </div>
+    <div class="loc-header">
+      <h2>Find Us</h2>
+    </div>
+    <div class="loc-card">
+      <h3>Waimea</h3>
+      <div class="schedule">Tue &ndash; Thu</div>
+      <p>DM <a href="https://www.instagram.com/aesthetics_bykayy/" target="_blank" style="border-bottom:1px solid var(--warm);color:var(--ink)">@aesthetics_bykayy</a> to book.</p>
+    </div>
+    <div class="loc-card">
+      <h3>Kona</h3>
+      <div class="schedule">Fri &ndash; Sat</div>
+      <p>Book online through the scheduling link.</p>
+    </div>
+    <div class="loc-card">
+      <h3>Hours</h3>
+      <div class="schedule">Mon &ndash; Sat</div>
+      <p>9:00 AM &ndash; 5:00 PM<br>Closed Sundays</p>
     </div>
   </section>
 
-  <section class="cta">
-    <div class="section-label">Ready?</div>
-    <h2 class="section-title">Your Best Look Awaits</h2>
-    <p>Book your appointment today and experience luxury aesthetics on the Big Island.</p>
-    <a href="https://baehawaii.square.site/s/appointments" target="_blank" class="btn">Book Now</a>
+  <section class="bottom-cta">
+    <h2>Ready to<br>be <em>adorned</em>?</h2>
+    <a href="https://baehawaii.square.site/s/appointments" target="_blank" class="book-btn">Book Now</a>
   </section>
 
   <footer>
-    <div class="logo">ADORNED</div>
-    <div class="social-links">
+    <div class="brand">Aesthetics By Kay</div>
+    <div class="foot-links">
       <a href="https://www.instagram.com/aesthetics_bykayy/" target="_blank">Instagram</a>
-      <a href="https://baehawaii.square.site/s/appointments" target="_blank">Book Online</a>
+      <a href="mailto:info@baehawaii.com">Email</a>
+      <a href="https://baehawaii.square.site/s/appointments" target="_blank">Book</a>
     </div>
-    <p>&copy; 2026 Adorned by Mikayla. All rights reserved.</p>
+    <span class="copy">&copy; 2026 Aesthetics By Kay</span>
   </footer>
 
 </body>
