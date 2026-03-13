@@ -864,39 +864,246 @@
       color: var(--muted);
     }
 
+    /* MOBILE HAMBURGER */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 200;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #fff;
+      margin: 5px 0;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--ink);
+      z-index: 150;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      opacity: 0;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    .mobile-nav.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .mobile-nav a {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2rem;
+      color: var(--bg);
+      letter-spacing: 0.02em;
+      transition: opacity 0.3s;
+    }
+
+    .mobile-nav a:hover { opacity: 0.6; }
+
+    /* TABLET */
+    @media (max-width: 1024px) {
+      .topbar { padding: 1.2rem 2rem; }
+      .hero-left { padding: 4rem 2rem; }
+      .services { padding: 6rem 2rem; }
+      .split-content { padding: 4rem 2rem; }
+      .locations { padding: 6rem 2rem; }
+      .service-row { grid-template-columns: 2fr 3fr auto auto; gap: 1.5rem; }
+    }
+
     /* MOBILE */
     @media (max-width: 768px) {
+      /* NAV */
       .topbar { padding: 1.2rem 1.5rem; }
-      .topbar-right a:not(:last-child) { display: none; }
+      .topbar-right { display: none; }
+      .hamburger { display: block; }
+      .mobile-nav { display: flex; }
 
+      /* HERO */
       .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-left { padding: 8rem 1.5rem 3rem; min-height: 60vh; justify-content: end; }
-      .hero-right { min-height: 50vh; }
+      .hero-left {
+        padding: 7rem 1.5rem 2.5rem;
+        min-height: 65vh;
+        justify-content: end;
+      }
+      .hero-left h1 { font-size: clamp(2.8rem, 12vw, 4rem); margin-bottom: 1.5rem; }
+      .hero-left .hero-sub { font-size: 0.85rem; max-width: 100%; margin-bottom: 1.5rem; }
+      .hero-right { min-height: 45vh; }
+      .hero-locations { gap: 0.75rem; margin-bottom: 2rem; }
+      .hero-loc { font-size: 0.82rem; line-height: 1.5; }
+      .hero-left .hero-cta {
+        font-size: 0.75rem;
+        padding: 0.75rem 0;
+        padding-bottom: 0.75rem;
+      }
 
-      .services { padding: 5rem 1.5rem; }
-      .services-header { flex-direction: column; align-items: start; gap: 1rem; }
+      /* MARQUEE */
+      .marquee { padding: 1.2rem 0; }
+      .marquee-inner span { font-size: 0.85rem; }
 
-      .service-row { grid-template-columns: 1fr; gap: 0.5rem; }
-      .service-row .tag { width: fit-content; }
-      .service-row .price { order: -1; }
+      /* SERVICES */
+      .services { padding: 4rem 1.5rem; }
+      .services-header {
+        flex-direction: column;
+        align-items: start;
+        gap: 1rem;
+        margin-bottom: 2.5rem;
+      }
+      .services-header .book-link {
+        font-size: 0.75rem;
+        padding: 0.5rem 0;
+        padding-bottom: 0.5rem;
+      }
 
+      .service-row {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+        padding: 1.5rem 0;
+      }
+      .service-row:hover { margin: 0; padding: 1.5rem 0; background: none; }
+      .service-row h3 { font-size: 1.3rem; }
+      .service-row p { font-size: 0.82rem; }
+      .service-row .price {
+        order: -1;
+        font-size: 1.1rem;
+      }
+      .service-row .tag {
+        width: fit-content;
+        font-size: 0.6rem;
+        margin-top: 0.25rem;
+      }
+
+      /* SPLIT ABOUT */
       .split { grid-template-columns: 1fr; min-height: auto; }
-      .split-image { min-height: 50vh; }
-      .split-content { padding: 3rem 1.5rem; }
+      .split-image { min-height: 40vh; }
+      .split-content {
+        padding: 3rem 1.5rem;
+      }
+      .split-content h2 { font-size: clamp(1.8rem, 7vw, 2.5rem); }
+      .split-content p { max-width: 100%; font-size: 0.85rem; }
+      .split-content .link { font-size: 0.75rem; padding: 0.5rem 0; }
 
-      .locations { grid-template-columns: 1fr; padding: 5rem 1.5rem; }
+      /* LOCATIONS */
+      .locations {
+        grid-template-columns: 1fr;
+        padding: 4rem 1.5rem;
+        gap: 1rem;
+      }
+      .loc-header { margin-bottom: 1rem; }
+      .loc-card { padding: 2rem 1.5rem; }
+      .loc-card h3 { font-size: 1.4rem; }
+      .loc-card p { font-size: 0.82rem; }
 
-      .bottom-cta { padding: 6rem 1.5rem; }
+      /* BOTTOM CTA */
+      .bottom-cta { padding: 5rem 1.5rem; }
+      .bottom-cta h2 { font-size: clamp(2.5rem, 10vw, 4rem); }
+      .bottom-cta .book-btn {
+        width: 120px;
+        height: 120px;
+        font-size: 0.65rem;
+      }
 
+      /* FOOTER */
       footer {
         flex-direction: column;
         gap: 1.5rem;
         text-align: center;
         padding: 2rem 1.5rem;
       }
+      footer .foot-links { gap: 1.5rem; }
+      footer .foot-links a { font-size: 0.7rem; padding: 0.25rem 0; }
 
-      .booking-modal { padding: 2rem 1.5rem; }
+      /* BOOKING MODAL */
+      .booking-overlay {
+        align-items: flex-end;
+      }
+      .booking-modal {
+        width: 100%;
+        max-width: 100%;
+        max-height: 92vh;
+        padding: 2rem 1.5rem 2.5rem;
+        border-radius: 16px 16px 0 0;
+      }
+      .booking-overlay.open .booking-modal {
+        transform: translateY(0) scale(1);
+      }
+      .booking-modal h2 { font-size: 1.6rem; }
+      .booking-close {
+        top: 1.2rem;
+        right: 1.2rem;
+        font-size: 1.8rem;
+        padding: 0.5rem;
+      }
+
+      .service-option {
+        padding: 1rem;
+        margin-bottom: 0.4rem;
+      }
+      .service-option .svc-name { font-size: 1rem; }
+      .service-option .svc-meta { gap: 0.75rem; }
+      .service-option .svc-dur { font-size: 0.7rem; }
+      .service-option .svc-price { font-size: 0.95rem; }
+
+      .date-grid { gap: 0.25rem; }
+      .date-grid .day { font-size: 0.75rem; }
       .time-grid { grid-template-columns: repeat(2, 1fr); }
+      .time-slot { padding: 0.85rem; font-size: 0.82rem; }
+
+      .form-row input,
+      .form-row textarea {
+        padding: 1rem;
+        font-size: 16px; /* prevents iOS zoom */
+      }
+      .form-row label { font-size: 0.7rem; margin-bottom: 0.4rem; }
+
+      .btn-next {
+        padding: 1rem 2rem;
+        font-size: 0.72rem;
+        width: 100%;
+        text-align: center;
+      }
+      .btn-back {
+        font-size: 0.75rem;
+        padding: 0.75rem 0;
+      }
+      .booking-nav {
+        flex-direction: column-reverse;
+        gap: 0.75rem;
+        align-items: stretch;
+        text-align: center;
+      }
+
+      .summary-card { padding: 1.25rem; }
+      .summary-row .label { font-size: 0.6rem; }
+      .summary-row .value { font-size: 0.82rem; }
+    }
+
+    /* SMALL PHONES */
+    @media (max-width: 380px) {
+      .hero-left { padding: 6rem 1.25rem 2rem; }
+      .hero-left h1 { font-size: 2.4rem; }
+      .services { padding: 3rem 1.25rem; }
+      .locations { padding: 3rem 1.25rem; }
+      .bottom-cta { padding: 4rem 1.25rem; }
+      .booking-modal { padding: 1.5rem 1.25rem 2rem; }
+      .date-grid .day { font-size: 0.7rem; }
+      .time-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -909,7 +1116,16 @@
       <a href="#locations">Find Us</a>
       <a href="#" onclick="openBooking(); return false;">Book</a>
     </div>
+    <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#services" onclick="toggleMobileNav()">Services</a>
+    <a href="#locations" onclick="toggleMobileNav()">Find Us</a>
+    <a href="#" onclick="toggleMobileNav(); openBooking(); return false;">Book</a>
+  </nav>
 
   <section class="hero">
     <div class="hero-left">
@@ -1168,6 +1384,15 @@
   </div>
 
   <script>
+    // --- Mobile Nav ---
+    function toggleMobileNav() {
+      const nav = document.getElementById('mobileNav');
+      const btn = document.querySelector('.hamburger');
+      nav.classList.toggle('open');
+      btn.classList.toggle('open');
+      document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+    }
+
     // --- Scroll Reveal ---
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
