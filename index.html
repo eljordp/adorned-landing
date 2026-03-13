@@ -141,6 +141,29 @@
       color: var(--muted);
     }
 
+    .hero-locations {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-loc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .hero-loc .pin { margin-right: 0.25rem; }
+
+    .hero-loc a {
+      color: var(--ink);
+      border-bottom: 1px solid var(--warm);
+      transition: opacity 0.3s;
+    }
+
+    .hero-loc a:hover { opacity: 0.6; }
+
     .hero-location {
       position: absolute;
       bottom: 3rem;
@@ -513,11 +536,14 @@
   <section class="hero">
     <div class="hero-left">
       <h1>Aesthetics<br><em>By Kay</em></h1>
-      <p class="hero-sub">Permanent makeup, lash lifts, laser treatments & esthetics on the Big Island. Results you can see, care you can feel.</p>
+      <p class="hero-sub">Luxury brow, lash & skin treatments on the Big Island. Results you can see, care you can feel.</p>
+      <div class="hero-locations">
+        <div class="hero-loc"><span class="pin">&#x1F4CD;</span> Waimea (Tue&ndash;Thu) &mdash; DM to book <a href="https://www.instagram.com/aesthetics_bykayy/" target="_blank">@aesthetics_bykayy</a></div>
+        <div class="hero-loc"><span class="pin">&#x1F4CD;</span> Kona (Fri&ndash;Sat) &mdash; <a href="https://baehawaii.square.site/s/appointments" target="_blank">Book online</a></div>
+      </div>
       <a href="https://baehawaii.square.site/s/appointments" target="_blank" class="hero-cta">
         Book an appointment <span class="arrow">&rarr;</span>
       </a>
-      <div class="hero-location">Kailua Kona, Hawaii</div>
     </div>
     <div class="hero-right">
       <span class="photo-placeholder">[ Hero image ]</span>
