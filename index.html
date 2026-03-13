@@ -30,6 +30,51 @@
 
     a { color: inherit; text-decoration: none; }
 
+    /* ANIMATIONS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    .hero-left h1 {
+      opacity: 0;
+      transform: translateY(40px);
+      animation: heroIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+    }
+
+    .hero-left .hero-sub {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+    }
+
+    .hero-locations {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards;
+    }
+
+    .hero-left .hero-cta {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+    }
+
+    @keyframes heroIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     /* TOPBAR */
     .topbar {
       position: fixed;
@@ -66,7 +111,7 @@
 
     .topbar-right a:hover { opacity: 0.6; }
 
-    /* HERO — full bleed, editorial */
+    /* HERO */
     .hero {
       min-height: 100vh;
       display: grid;
@@ -101,7 +146,7 @@
       letter-spacing: 0.08em;
       line-height: 1.8;
       max-width: 360px;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
     }
 
     .hero-left .hero-cta {
@@ -116,6 +161,7 @@
       padding-bottom: 0.5rem;
       width: fit-content;
       transition: gap 0.3s;
+      cursor: pointer;
     }
 
     .hero-left .hero-cta:hover { gap: 1.5rem; }
@@ -163,16 +209,6 @@
     }
 
     .hero-loc a:hover { opacity: 0.6; }
-
-    .hero-location {
-      position: absolute;
-      bottom: 3rem;
-      left: 3rem;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
 
     /* MARQUEE */
     .marquee {
@@ -229,12 +265,13 @@
       line-height: 1;
     }
 
-    .services-header a {
+    .services-header .book-link {
       font-size: 0.7rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       border-bottom: 1px solid var(--ink);
       padding-bottom: 0.3rem;
+      cursor: pointer;
     }
 
     .service-list {
@@ -244,13 +281,13 @@
 
     .service-row {
       display: grid;
-      grid-template-columns: 2fr 3fr auto;
+      grid-template-columns: 2fr 3fr auto auto;
       align-items: center;
       gap: 2rem;
       padding: 2rem 0;
       border-top: 1px solid rgba(0,0,0,0.08);
-      transition: background 0.3s;
-      cursor: default;
+      transition: all 0.3s;
+      cursor: pointer;
     }
 
     .service-row:last-child { border-bottom: 1px solid rgba(0,0,0,0.08); }
@@ -267,6 +304,13 @@
       font-size: 0.8rem;
       color: var(--muted);
       line-height: 1.6;
+    }
+
+    .service-row .price {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.2rem;
+      color: var(--ink);
+      white-space: nowrap;
     }
 
     .service-row .tag {
@@ -425,11 +469,365 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       transition: transform 0.3s, background 0.3s;
+      cursor: pointer;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
     }
 
     .bottom-cta .book-btn:hover {
       transform: scale(1.08);
       background: var(--deep);
+    }
+
+    /* BOOKING MODAL */
+    .booking-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(26,26,26,0.5);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .booking-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .booking-modal {
+      background: var(--bg);
+      width: 90%;
+      max-width: 580px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 3rem;
+      position: relative;
+      transform: translateY(30px) scale(0.97);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .booking-overlay.open .booking-modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .booking-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--muted);
+      transition: color 0.3s;
+      line-height: 1;
+    }
+
+    .booking-close:hover { color: var(--ink); }
+
+    .booking-modal h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+
+    .booking-modal .modal-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    /* BOOKING STEPS */
+    .booking-step { display: none; }
+    .booking-step.active { display: block; }
+
+    .step-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--warm);
+      margin-bottom: 1.25rem;
+      font-weight: 500;
+    }
+
+    .service-option {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 1.25rem;
+      border: 1px solid rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-option:hover {
+      border-color: var(--warm);
+      background: rgba(212,181,160,0.05);
+    }
+
+    .service-option.selected {
+      border-color: var(--ink);
+      background: rgba(0,0,0,0.02);
+    }
+
+    .service-option .svc-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.1rem;
+    }
+
+    .service-option .svc-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .service-option .svc-dur {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .service-option .svc-price {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.05rem;
+    }
+
+    /* DATE/TIME */
+    .date-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.35rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .date-grid .day-label {
+      font-size: 0.6rem;
+      text-align: center;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding-bottom: 0.5rem;
+    }
+
+    .date-grid .day {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+
+    .date-grid .day:hover:not(.disabled) {
+      border-color: var(--warm);
+    }
+
+    .date-grid .day.selected {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .date-grid .day.disabled {
+      color: rgba(0,0,0,0.15);
+      cursor: default;
+    }
+
+    .date-grid .day.today {
+      border-color: var(--warm);
+    }
+
+    .month-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .month-nav span {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.1rem;
+    }
+
+    .month-nav button {
+      background: none;
+      border: 1px solid rgba(0,0,0,0.08);
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: border-color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink);
+    }
+
+    .month-nav button:hover { border-color: var(--warm); }
+
+    .time-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+    }
+
+    .time-slot {
+      padding: 0.75rem;
+      text-align: center;
+      font-size: 0.8rem;
+      border: 1px solid rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .time-slot:hover { border-color: var(--warm); }
+    .time-slot.selected { background: var(--ink); color: var(--bg); }
+
+    /* FORM FIELDS */
+    .form-row {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-row label {
+      display: block;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-row input,
+    .form-row textarea {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 1px solid rgba(0,0,0,0.1);
+      background: transparent;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-row input:focus,
+    .form-row textarea:focus {
+      border-color: var(--warm);
+    }
+
+    .form-row textarea { resize: vertical; min-height: 80px; }
+
+    .booking-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .btn-back {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: color 0.2s;
+    }
+
+    .btn-back:hover { color: var(--ink); }
+
+    .btn-next {
+      padding: 0.9rem 2.5rem;
+      background: var(--ink);
+      color: var(--bg);
+      border: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-next:hover { background: var(--deep); }
+    .btn-next:disabled { opacity: 0.3; cursor: default; }
+
+    /* BOOKING SUMMARY */
+    .summary-card {
+      padding: 1.5rem;
+      background: rgba(212,181,160,0.08);
+      margin-bottom: 1.5rem;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+    }
+
+    .summary-row:not(:last-child) {
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .summary-row .label {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .summary-row .value {
+      font-size: 0.85rem;
+    }
+
+    /* CONFIRMATION */
+    .confirmation {
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .confirmation .check {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--warm);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 1.5rem;
+      animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes scaleIn {
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+
+    .confirmation h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+
+    .confirmation p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
     }
 
     /* FOOTER */
@@ -471,45 +869,22 @@
       .topbar { padding: 1.2rem 1.5rem; }
       .topbar-right a:not(:last-child) { display: none; }
 
-      .hero {
-        grid-template-columns: 1fr;
-        min-height: auto;
-      }
-
-      .hero-left {
-        padding: 8rem 1.5rem 3rem;
-        min-height: 60vh;
-        justify-content: end;
-      }
-
-      .hero-right {
-        min-height: 50vh;
-      }
-
-      .hero-location { left: 1.5rem; bottom: 1.5rem; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 8rem 1.5rem 3rem; min-height: 60vh; justify-content: end; }
+      .hero-right { min-height: 50vh; }
 
       .services { padding: 5rem 1.5rem; }
       .services-header { flex-direction: column; align-items: start; gap: 1rem; }
 
-      .service-row {
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
-      }
-
+      .service-row { grid-template-columns: 1fr; gap: 0.5rem; }
       .service-row .tag { width: fit-content; }
+      .service-row .price { order: -1; }
 
-      .split {
-        grid-template-columns: 1fr;
-        min-height: auto;
-      }
-
+      .split { grid-template-columns: 1fr; min-height: auto; }
       .split-image { min-height: 50vh; }
       .split-content { padding: 3rem 1.5rem; }
 
-      .locations {
-        grid-template-columns: 1fr;
-        padding: 5rem 1.5rem;
-      }
+      .locations { grid-template-columns: 1fr; padding: 5rem 1.5rem; }
 
       .bottom-cta { padding: 6rem 1.5rem; }
 
@@ -519,6 +894,9 @@
         text-align: center;
         padding: 2rem 1.5rem;
       }
+
+      .booking-modal { padding: 2rem 1.5rem; }
+      .time-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -529,7 +907,7 @@
     <div class="topbar-right">
       <a href="#services">Services</a>
       <a href="#locations">Find Us</a>
-      <a href="https://baehawaii.square.site/s/appointments" target="_blank">Book</a>
+      <a href="#" onclick="openBooking(); return false;">Book</a>
     </div>
   </div>
 
@@ -539,9 +917,9 @@
       <p class="hero-sub">Luxury brow, lash & skin treatments on the Big Island. Results you can see, care you can feel.</p>
       <div class="hero-locations">
         <div class="hero-loc"><span class="pin">&#x1F4CD;</span> Waimea (Tue&ndash;Thu) &mdash; DM to book <a href="https://www.instagram.com/aesthetics_bykayy/" target="_blank">@aesthetics_bykayy</a></div>
-        <div class="hero-loc"><span class="pin">&#x1F4CD;</span> Kona (Fri&ndash;Sat) &mdash; <a href="https://baehawaii.square.site/s/appointments" target="_blank">Book online</a></div>
+        <div class="hero-loc"><span class="pin">&#x1F4CD;</span> Kona (Fri&ndash;Sat) &mdash; Book below</div>
       </div>
-      <a href="https://baehawaii.square.site/s/appointments" target="_blank" class="hero-cta">
+      <a href="#" onclick="openBooking(); return false;" class="hero-cta">
         Book an appointment <span class="arrow">&rarr;</span>
       </a>
     </div>
@@ -572,44 +950,51 @@
   </div>
 
   <section id="services" class="services">
-    <div class="services-header">
+    <div class="services-header reveal">
       <h2>Services</h2>
-      <a href="https://baehawaii.square.site/s/appointments" target="_blank">View all & book &rarr;</a>
+      <span class="book-link" onclick="openBooking()">Book a service &rarr;</span>
     </div>
     <div class="service-list">
-      <div class="service-row">
+      <div class="service-row reveal reveal-delay-1" onclick="openBooking('powder-brows')">
         <h3>Powder Brows</h3>
-        <p>Soft, filled-in brow look using permanent makeup. Natural or bold — customized to your face shape and skin tone.</p>
+        <p>Soft, filled-in brow look using permanent makeup. Customized to your face shape and skin tone.</p>
+        <span class="price">$400</span>
         <span class="tag">Permanent Makeup</span>
       </div>
-      <div class="service-row">
+      <div class="service-row reveal reveal-delay-1" onclick="openBooking('lip-blush')">
         <h3>Lip Blush</h3>
-        <p>Semi-permanent lip color that enhances your natural lip shape and adds a healthy, flushed tone.</p>
+        <p>Semi-permanent lip color that enhances your natural lip shape with a healthy, flushed tone.</p>
+        <span class="price">$400</span>
         <span class="tag">Permanent Makeup</span>
       </div>
-      <div class="service-row">
+      <div class="service-row reveal reveal-delay-2" onclick="openBooking('eyeliner')">
         <h3>Eyeliner</h3>
         <p>Wake up with perfectly defined eyes. Subtle lash line or classic wing — your call.</p>
+        <span class="price">$350</span>
         <span class="tag">Permanent Makeup</span>
       </div>
-      <div class="service-row">
+      <div class="service-row reveal reveal-delay-2" onclick="openBooking('korean-lash-lift')">
         <h3>Korean Lash Lift</h3>
         <p>Natural lash curl and lift that opens up your eyes. No extensions, no maintenance.</p>
+        <span class="price">$85</span>
         <span class="tag">Lash & Brow</span>
       </div>
-      <div class="service-row">
+      <div class="service-row reveal reveal-delay-3" onclick="openBooking('brow-lamination')">
         <h3>Brow Lamination</h3>
         <p>Fluffy, brushed-up brows that stay in place. The effortless full-brow look.</p>
+        <span class="price">$75</span>
         <span class="tag">Lash & Brow</span>
       </div>
-      <div class="service-row">
+      <div class="service-row reveal reveal-delay-3" onclick="openBooking('laser-hair-removal')">
         <h3>Laser Hair Removal</h3>
         <p>Smooth skin, long-term results. Safe and effective treatments for all areas.</p>
+        <span class="price">From $75</span>
         <span class="tag">Laser</span>
       </div>
-      <div class="service-row">
+      <div class="service-row reveal reveal-delay-4" onclick="openBooking('facials')">
         <h3>Facials & Skin</h3>
         <p>Targeted treatments to clear, brighten, and restore your skin's natural glow.</p>
+        <span class="price">From $95</span>
         <span class="tag">Esthetics</span>
       </div>
     </div>
@@ -620,30 +1005,30 @@
       <span>[ Photo ]</span>
     </div>
     <div class="split-content">
-      <div class="label">About</div>
-      <h2>Meet Mikayla</h2>
-      <p>Licensed esthetician and permanent makeup artist based on the Big Island. Mikayla blends technique with artistry — every treatment is tailored, every result intentional.</p>
-      <a href="https://www.instagram.com/aesthetics_bykayy/" target="_blank" class="link">
+      <div class="label reveal">About</div>
+      <h2 class="reveal reveal-delay-1">Meet Mikayla</h2>
+      <p class="reveal reveal-delay-2">Licensed esthetician and permanent makeup artist based on the Big Island. Mikayla blends technique with artistry — every treatment is tailored, every result intentional.</p>
+      <a href="https://www.instagram.com/aesthetics_bykayy/" target="_blank" class="link reveal reveal-delay-3">
         Follow on Instagram &rarr;
       </a>
     </div>
   </section>
 
   <section id="locations" class="locations">
-    <div class="loc-header">
+    <div class="loc-header reveal">
       <h2>Find Us</h2>
     </div>
-    <div class="loc-card">
+    <div class="loc-card reveal reveal-delay-1">
       <h3>Waimea</h3>
       <div class="schedule">Tue &ndash; Thu</div>
       <p>DM <a href="https://www.instagram.com/aesthetics_bykayy/" target="_blank" style="border-bottom:1px solid var(--warm);color:var(--ink)">@aesthetics_bykayy</a> to book.</p>
     </div>
-    <div class="loc-card">
+    <div class="loc-card reveal reveal-delay-2">
       <h3>Kona</h3>
       <div class="schedule">Fri &ndash; Sat</div>
-      <p>Book online through the scheduling link.</p>
+      <p>Book online through the site.</p>
     </div>
-    <div class="loc-card">
+    <div class="loc-card reveal reveal-delay-3">
       <h3>Hours</h3>
       <div class="schedule">Mon &ndash; Sat</div>
       <p>9:00 AM &ndash; 5:00 PM<br>Closed Sundays</p>
@@ -651,8 +1036,8 @@
   </section>
 
   <section class="bottom-cta">
-    <h2>Ready to<br>be <em>adorned</em>?</h2>
-    <a href="https://baehawaii.square.site/s/appointments" target="_blank" class="book-btn">Book Now</a>
+    <h2 class="reveal">Ready to<br>be <em>adorned</em>?</h2>
+    <button class="book-btn reveal reveal-delay-1" onclick="openBooking()">Book Now</button>
   </section>
 
   <footer>
@@ -660,10 +1045,333 @@
     <div class="foot-links">
       <a href="https://www.instagram.com/aesthetics_bykayy/" target="_blank">Instagram</a>
       <a href="mailto:info@baehawaii.com">Email</a>
-      <a href="https://baehawaii.square.site/s/appointments" target="_blank">Book</a>
+      <a href="#" onclick="openBooking(); return false;">Book</a>
     </div>
     <span class="copy">&copy; 2026 Aesthetics By Kay</span>
   </footer>
+
+  <!-- BOOKING MODAL -->
+  <div class="booking-overlay" id="bookingOverlay">
+    <div class="booking-modal">
+      <button class="booking-close" onclick="closeBooking()">&times;</button>
+      <h2>Book an Appointment</h2>
+      <p class="modal-sub">Select a service, pick your date, and we'll confirm within 24 hours.</p>
+
+      <!-- Step 1: Service -->
+      <div class="booking-step active" id="step1">
+        <div class="step-label">Step 1 &mdash; Choose a Service</div>
+        <div class="service-option" data-service="powder-brows" data-price="400" data-duration="2.5 hrs">
+          <span class="svc-name">Powder Brows</span>
+          <span class="svc-meta"><span class="svc-dur">2.5 hrs</span><span class="svc-price">$400</span></span>
+        </div>
+        <div class="service-option" data-service="lip-blush" data-price="400" data-duration="2.5 hrs">
+          <span class="svc-name">Lip Blush</span>
+          <span class="svc-meta"><span class="svc-dur">2.5 hrs</span><span class="svc-price">$400</span></span>
+        </div>
+        <div class="service-option" data-service="eyeliner" data-price="350" data-duration="2 hrs">
+          <span class="svc-name">Eyeliner</span>
+          <span class="svc-meta"><span class="svc-dur">2 hrs</span><span class="svc-price">$350</span></span>
+        </div>
+        <div class="service-option" data-service="korean-lash-lift" data-price="85" data-duration="1 hr">
+          <span class="svc-name">Korean Lash Lift</span>
+          <span class="svc-meta"><span class="svc-dur">1 hr</span><span class="svc-price">$85</span></span>
+        </div>
+        <div class="service-option" data-service="brow-lamination" data-price="75" data-duration="1 hr">
+          <span class="svc-name">Brow Lamination</span>
+          <span class="svc-meta"><span class="svc-dur">1 hr</span><span class="svc-price">$75</span></span>
+        </div>
+        <div class="service-option" data-service="laser-hair-removal" data-price="75" data-duration="30 min">
+          <span class="svc-name">Laser Hair Removal</span>
+          <span class="svc-meta"><span class="svc-dur">30 min</span><span class="svc-price">From $75</span></span>
+        </div>
+        <div class="service-option" data-service="facials" data-price="95" data-duration="1 hr">
+          <span class="svc-name">Facials & Skin</span>
+          <span class="svc-meta"><span class="svc-dur">1 hr</span><span class="svc-price">From $95</span></span>
+        </div>
+        <div class="booking-nav">
+          <span></span>
+          <button class="btn-next" id="toStep2" disabled onclick="goStep(2)">Continue</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Date & Time -->
+      <div class="booking-step" id="step2">
+        <div class="step-label">Step 2 &mdash; Pick a Date & Time</div>
+        <div class="month-nav">
+          <button onclick="prevMonth()">&larr;</button>
+          <span id="monthLabel"></span>
+          <button onclick="nextMonth()">&rarr;</button>
+        </div>
+        <div class="date-grid" id="dateGrid"></div>
+        <div class="step-label" style="margin-top:1.5rem">Available Times</div>
+        <div class="time-grid" id="timeGrid"></div>
+        <div class="booking-nav">
+          <button class="btn-back" onclick="goStep(1)">&larr; Back</button>
+          <button class="btn-next" id="toStep3" disabled onclick="goStep(3)">Continue</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Contact Info -->
+      <div class="booking-step" id="step3">
+        <div class="step-label">Step 3 &mdash; Your Info</div>
+        <div class="form-row">
+          <label>Full Name</label>
+          <input type="text" id="bookName" placeholder="Your name" required>
+        </div>
+        <div class="form-row">
+          <label>Phone</label>
+          <input type="tel" id="bookPhone" placeholder="(808) 000-0000" required>
+        </div>
+        <div class="form-row">
+          <label>Email</label>
+          <input type="email" id="bookEmail" placeholder="you@email.com" required>
+        </div>
+        <div class="form-row">
+          <label>Notes (optional)</label>
+          <textarea id="bookNotes" placeholder="Anything we should know?"></textarea>
+        </div>
+        <div class="booking-nav">
+          <button class="btn-back" onclick="goStep(2)">&larr; Back</button>
+          <button class="btn-next" onclick="goStep(4)">Review</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Review & Submit -->
+      <div class="booking-step" id="step4">
+        <div class="step-label">Review Your Booking</div>
+        <div class="summary-card">
+          <div class="summary-row"><span class="label">Service</span><span class="value" id="sumService"></span></div>
+          <div class="summary-row"><span class="label">Date</span><span class="value" id="sumDate"></span></div>
+          <div class="summary-row"><span class="label">Time</span><span class="value" id="sumTime"></span></div>
+          <div class="summary-row"><span class="label">Price</span><span class="value" id="sumPrice"></span></div>
+          <div class="summary-row"><span class="label">Name</span><span class="value" id="sumName"></span></div>
+          <div class="summary-row"><span class="label">Contact</span><span class="value" id="sumContact"></span></div>
+        </div>
+        <div class="booking-nav">
+          <button class="btn-back" onclick="goStep(3)">&larr; Back</button>
+          <button class="btn-next" onclick="submitBooking()">Confirm Booking</button>
+        </div>
+      </div>
+
+      <!-- Step 5: Confirmation -->
+      <div class="booking-step" id="step5">
+        <div class="confirmation">
+          <div class="check">&#10003;</div>
+          <h3>You're booked!</h3>
+          <p>We'll confirm your appointment within 24 hours via email or text. See you soon!</p>
+        </div>
+        <div style="text-align:center; margin-top:1.5rem;">
+          <button class="btn-next" onclick="closeBooking()">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- Scroll Reveal ---
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // --- Booking System ---
+    let selectedService = null;
+    let selectedDate = null;
+    let selectedTime = null;
+    let currentMonth = new Date().getMonth();
+    let currentYear = new Date().getFullYear();
+
+    const services = {
+      'powder-brows': { name: 'Powder Brows', price: '$400', duration: '2.5 hrs' },
+      'lip-blush': { name: 'Lip Blush', price: '$400', duration: '2.5 hrs' },
+      'eyeliner': { name: 'Eyeliner', price: '$350', duration: '2 hrs' },
+      'korean-lash-lift': { name: 'Korean Lash Lift', price: '$85', duration: '1 hr' },
+      'brow-lamination': { name: 'Brow Lamination', price: '$75', duration: '1 hr' },
+      'laser-hair-removal': { name: 'Laser Hair Removal', price: 'From $75', duration: '30 min' },
+      'facials': { name: 'Facials & Skin', price: 'From $95', duration: '1 hr' }
+    };
+
+    const timeSlots = ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '1:00 PM', '1:30 PM', '2:00 PM', '2:30 PM', '3:00 PM'];
+
+    function openBooking(serviceId) {
+      document.getElementById('bookingOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      if (serviceId) {
+        selectService(serviceId);
+      }
+      resetToStep1();
+    }
+
+    function closeBooking() {
+      document.getElementById('bookingOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+      // Reset
+      selectedService = null;
+      selectedDate = null;
+      selectedTime = null;
+      document.querySelectorAll('.service-option').forEach(o => o.classList.remove('selected'));
+      document.getElementById('toStep2').disabled = true;
+      document.getElementById('bookName').value = '';
+      document.getElementById('bookPhone').value = '';
+      document.getElementById('bookEmail').value = '';
+      document.getElementById('bookNotes').value = '';
+      resetToStep1();
+    }
+
+    function resetToStep1() {
+      document.querySelectorAll('.booking-step').forEach(s => s.classList.remove('active'));
+      document.getElementById('step1').classList.add('active');
+    }
+
+    // Service selection
+    document.querySelectorAll('.service-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        selectService(opt.dataset.service);
+      });
+    });
+
+    function selectService(serviceId) {
+      selectedService = serviceId;
+      document.querySelectorAll('.service-option').forEach(o => {
+        o.classList.toggle('selected', o.dataset.service === serviceId);
+      });
+      document.getElementById('toStep2').disabled = false;
+    }
+
+    // Step navigation
+    function goStep(step) {
+      document.querySelectorAll('.booking-step').forEach(s => s.classList.remove('active'));
+      document.getElementById('step' + step).classList.add('active');
+
+      if (step === 2) {
+        renderCalendar();
+        renderTimeSlots();
+      }
+
+      if (step === 4) {
+        const svc = services[selectedService];
+        document.getElementById('sumService').textContent = svc.name + ' (' + svc.duration + ')';
+        document.getElementById('sumDate').textContent = selectedDate ? selectedDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }) : '';
+        document.getElementById('sumTime').textContent = selectedTime || '';
+        document.getElementById('sumPrice').textContent = svc.price;
+        document.getElementById('sumName').textContent = document.getElementById('bookName').value;
+        document.getElementById('sumContact').textContent = document.getElementById('bookEmail').value + ' / ' + document.getElementById('bookPhone').value;
+      }
+    }
+
+    // Calendar
+    function renderCalendar() {
+      const grid = document.getElementById('dateGrid');
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const firstDay = new Date(currentYear, currentMonth, 1);
+      const lastDay = new Date(currentYear, currentMonth + 1, 0);
+      const startDay = firstDay.getDay();
+
+      document.getElementById('monthLabel').textContent = firstDay.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+      const days = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+      let html = days.map(d => '<div class="day-label">' + d + '</div>').join('');
+
+      for (let i = 0; i < startDay; i++) {
+        html += '<div class="day disabled"></div>';
+      }
+
+      for (let d = 1; d <= lastDay.getDate(); d++) {
+        const date = new Date(currentYear, currentMonth, d);
+        const isPast = date < today;
+        const isSunday = date.getDay() === 0;
+        const isToday = date.getTime() === today.getTime();
+        const isSelected = selectedDate && date.getTime() === selectedDate.getTime();
+        let cls = 'day';
+        if (isPast || isSunday) cls += ' disabled';
+        if (isToday) cls += ' today';
+        if (isSelected) cls += ' selected';
+        html += '<div class="' + cls + '" data-date="' + date.toISOString() + '">' + d + '</div>';
+      }
+
+      grid.innerHTML = html;
+
+      grid.querySelectorAll('.day:not(.disabled)').forEach(dayEl => {
+        dayEl.addEventListener('click', () => {
+          selectedDate = new Date(dayEl.dataset.date);
+          renderCalendar();
+          checkStep2();
+        });
+      });
+    }
+
+    function prevMonth() {
+      currentMonth--;
+      if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+      renderCalendar();
+    }
+
+    function nextMonth() {
+      currentMonth++;
+      if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+      renderCalendar();
+    }
+
+    function renderTimeSlots() {
+      const grid = document.getElementById('timeGrid');
+      grid.innerHTML = timeSlots.map(t => {
+        const cls = selectedTime === t ? 'time-slot selected' : 'time-slot';
+        return '<div class="' + cls + '">' + t + '</div>';
+      }).join('');
+
+      grid.querySelectorAll('.time-slot').forEach(slot => {
+        slot.addEventListener('click', () => {
+          selectedTime = slot.textContent;
+          renderTimeSlots();
+          checkStep2();
+        });
+      });
+    }
+
+    function checkStep2() {
+      document.getElementById('toStep3').disabled = !(selectedDate && selectedTime);
+    }
+
+    function submitBooking() {
+      // Collect all data
+      const booking = {
+        service: services[selectedService].name,
+        date: selectedDate.toISOString(),
+        time: selectedTime,
+        price: services[selectedService].price,
+        name: document.getElementById('bookName').value,
+        phone: document.getElementById('bookPhone').value,
+        email: document.getElementById('bookEmail').value,
+        notes: document.getElementById('bookNotes').value,
+        submitted: new Date().toISOString()
+      };
+
+      // Store locally (can connect to backend/email later)
+      const bookings = JSON.parse(localStorage.getItem('abk_bookings') || '[]');
+      bookings.push(booking);
+      localStorage.setItem('abk_bookings', JSON.stringify(bookings));
+
+      console.log('New booking:', booking);
+      goStep(5);
+    }
+
+    // Close on overlay click
+    document.getElementById('bookingOverlay').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeBooking();
+    });
+
+    // Close on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeBooking();
+    });
+  </script>
 
 </body>
 </html>
