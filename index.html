@@ -7,7 +7,10 @@
   <meta name="description" content="Aesthetics By Kayy — Big Island Hawaii's premier esthetician. Facials, Korean lash lifts, brow lamination, LED therapy & waxing in Waimea and Kona. Book your appointment today.">
   <meta name="keywords" content="aesthetics Waimea Hawaii, esthetician Kona, facials Big Island Hawaii, Korean lash lift Hawaii, brow lamination Waimea, brow lamination Kona, lash lift Kona, LED therapy Hawaii, glass skin facial Hawaii, waxing Waimea, waxing Kona, skincare Big Island, beauty services Waimea, beauty services Kona, Aesthetics By Kayy">
   <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#FDFBF8">
+  <link rel="icon" type="image/png" href="abk.png">
   <link rel="canonical" href="https://adorned-landing.vercel.app/">
+  <link rel="alternate" hreflang="en-US" href="https://adorned-landing.vercel.app/">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Aesthetics By Kayy | Waimea & Kona, Hawaii">
@@ -80,6 +83,72 @@
       }
     }
   ]
+  </script>
+
+  <!-- FAQ Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Who is the best esthetician on the Big Island of Hawaii?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Aesthetics By Kayy, led by licensed esthetician Mikayla, is the Big Island's premier skin, lash, and brow studio. Serving Waimea and Kona, she offers luxury facials, Korean lash lifts, brow lamination, LED therapy, and waxing — all tailored to enhance your natural beauty."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a Korean lash lift and where can I get one in Waimea or Kona?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A Korean lash lift uses a specialized technique to curl and lift your natural lashes from the root, creating a wide-eyed, natural look that lasts 6-8 weeks — no extensions needed. Aesthetics By Kayy offers Korean lash lifts starting at $125 in both Waimea (Tue-Thu) and Kona (Fri-Sat)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does brow lamination cost in Kona, Hawaii?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "At Aesthetics By Kayy, brow lamination starts at $100. You can also add a tint for $125, or go for the full Luxe Brow Set (lamination + tint + wax) for $175. Brow services are available in Kona on Fridays and Saturdays."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a glass skin facial and is it available in Hawaii?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Adorned Glass Skin Facial is a premium 1.5-hour treatment that includes dermaplaning and LED light therapy. It removes peach fuzz and dead skin cells to reveal a smooth, luminous, glass-like complexion. Available at Aesthetics By Kayy in Waimea and Kona for $200."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where can I get a facial in Waimea, Hawaii?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Aesthetics By Kayy offers luxury facials in Waimea every Tuesday through Thursday. Services include the signature Adorned Glow Facial ($150), Glass Skin Facial ($200), LED Light Therapy Facial ($150), and High Frequency Facial ($150). Book online or DM @aesthetics_bykayy on Instagram."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Aesthetics By Kayy offer packages or bundles?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! Two signature packages are available: the Ultimate Lash & Brow Package ($300, save $25) includes a Korean Lash Lift + Tint and the Luxe Brow Set. The Ultimate Glow Package ($350, save $50) includes a Glow Facial, Lash Lift + Tint, and Brow Tint + Wax — a full beauty refresh in one session."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the hours and locations for Aesthetics By Kayy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Aesthetics By Kayy operates at two Big Island locations: Waimea (Tuesday through Thursday) and Kona (Friday and Saturday), from 9:00 AM to 5:00 PM. Closed Sundays and Mondays. Book online through the website or DM @aesthetics_bykayy on Instagram."
+        }
+      }
+    ]
+  }
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -997,6 +1066,83 @@
       line-height: 1.6;
     }
 
+    /* FAQ */
+    .faq {
+      padding: 8rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .faq-header {
+      margin-bottom: 4rem;
+    }
+
+    .faq-header h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .faq-header p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 1rem;
+      letter-spacing: 0.02em;
+    }
+
+    .faq-item {
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .faq-item:last-child {
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.75rem 0;
+      cursor: pointer;
+      gap: 2rem;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .faq-question h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+
+    .faq-icon {
+      font-size: 1.4rem;
+      color: var(--warm);
+      flex-shrink: 0;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      line-height: 1;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .faq-answer-inner {
+      padding-bottom: 1.75rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 680px;
+    }
+
     /* FOOTER */
     footer {
       padding: 3rem;
@@ -1180,6 +1326,13 @@
       .loc-card { padding: 2rem 1.5rem; }
       .loc-card h3 { font-size: 1.4rem; }
       .loc-card p { font-size: 0.82rem; }
+
+      /* FAQ */
+      .faq { padding: 4rem 1.5rem; }
+      .faq-header { margin-bottom: 2.5rem; }
+      .faq-question { padding: 1.5rem 0; gap: 1rem; }
+      .faq-question h3 { font-size: 1.15rem; }
+      .faq-answer-inner { font-size: 0.82rem; padding-bottom: 1.5rem; }
 
       /* BOTTOM CTA */
       .bottom-cta { padding: 5rem 1.5rem; }
@@ -1473,6 +1626,76 @@
       <h3>Hours</h3>
       <div class="schedule">Tue &ndash; Sat</div>
       <p>9:00 AM &ndash; 5:00 PM<br>Closed Sundays</p>
+    </div>
+  </section>
+
+  <section id="faq" class="faq">
+    <div class="faq-header reveal">
+      <h2>Common Questions</h2>
+      <p>Everything you need to know before your visit.</p>
+    </div>
+    <div class="faq-item reveal reveal-delay-1">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h3>Who is the best esthetician on the Big Island of Hawaii?</h3>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Aesthetics By Kayy, led by licensed esthetician Mikayla, is the Big Island's premier skin, lash, and brow studio. Serving both Waimea and Kona, she offers luxury facials, Korean lash lifts, brow lamination, LED therapy, and waxing — all tailored to enhance your natural beauty.</div>
+      </div>
+    </div>
+    <div class="faq-item reveal reveal-delay-1">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h3>What is a Korean lash lift and where can I get one in Waimea or Kona?</h3>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">A Korean lash lift uses a specialized technique to curl and lift your natural lashes from the root, creating a wide-eyed, natural look that lasts 6-8 weeks — no extensions needed. Aesthetics By Kayy offers Korean lash lifts starting at $125 in both Waimea (Tue-Thu) and Kona (Fri-Sat).</div>
+      </div>
+    </div>
+    <div class="faq-item reveal reveal-delay-2">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h3>How much does brow lamination cost in Kona, Hawaii?</h3>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">At Aesthetics By Kayy, brow lamination starts at $100. You can also add a tint for $125, or go for the full Luxe Brow Set (lamination + tint + wax) for $175. Brow services are available in Kona on Fridays and Saturdays.</div>
+      </div>
+    </div>
+    <div class="faq-item reveal reveal-delay-2">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h3>What is a glass skin facial and is it available in Hawaii?</h3>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">The Adorned Glass Skin Facial is a premium 1.5-hour treatment that includes dermaplaning and LED light therapy. It removes peach fuzz and dead skin cells to reveal a smooth, luminous, glass-like complexion. Available at Aesthetics By Kayy in Waimea and Kona for $200.</div>
+      </div>
+    </div>
+    <div class="faq-item reveal reveal-delay-3">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h3>Where can I get a facial in Waimea, Hawaii?</h3>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Aesthetics By Kayy offers luxury facials in Waimea every Tuesday through Thursday. Services include the signature Adorned Glow Facial ($150), Glass Skin Facial ($200), LED Light Therapy Facial ($150), and High Frequency Facial ($150). Book online or DM @aesthetics_bykayy on Instagram.</div>
+      </div>
+    </div>
+    <div class="faq-item reveal reveal-delay-3">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h3>Does Aesthetics By Kayy offer packages or bundles?</h3>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Yes! Two signature packages are available: the Ultimate Lash & Brow Package ($300, save $25) includes a Korean Lash Lift + Tint and the Luxe Brow Set. The Ultimate Glow Package ($350, save $50) includes a Glow Facial, Lash Lift + Tint, and Brow Tint + Wax — a full beauty refresh in one session.</div>
+      </div>
+    </div>
+    <div class="faq-item reveal reveal-delay-4">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h3>What are the hours and locations for Aesthetics By Kayy?</h3>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Aesthetics By Kayy operates at two Big Island locations: Waimea (Tuesday through Thursday) and Kona (Friday and Saturday), from 9:00 AM to 5:00 PM. Closed Sundays and Mondays. Book online through the website or DM @aesthetics_bykayy on Instagram.</div>
+      </div>
     </div>
   </section>
 
@@ -1946,6 +2169,29 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeBooking();
     });
+
+    // --- FAQ Accordion ---
+    function toggleFaq(el) {
+      const item = el.parentElement;
+      const answer = item.querySelector('.faq-answer');
+      const isOpen = item.classList.contains('open');
+
+      // Close all other items
+      document.querySelectorAll('.faq-item.open').forEach(openItem => {
+        if (openItem !== item) {
+          openItem.classList.remove('open');
+          openItem.querySelector('.faq-answer').style.maxHeight = null;
+        }
+      });
+
+      if (isOpen) {
+        item.classList.remove('open');
+        answer.style.maxHeight = null;
+      } else {
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    }
   </script>
 
 </body>
