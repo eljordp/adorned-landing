@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://adorned-landing.vercel.app/sitemap.xml
+Sitemap: https://www.aestheticsbykayy.com/sitemap.xml
