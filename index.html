@@ -1194,11 +1194,11 @@
       <h1>Aesthetics<br><em>By Kayy</em></h1>
       <p class="hero-sub">Luxury skin, brow &amp; lash studio on the Big Island. Enhancing your natural beauty, one treatment at a time.</p>
       <div class="hero-locations">
-        <div class="hero-loc"><span class="pin">&#x1F4CD;</span> Waimea (Tue&ndash;Thu) &mdash; Book below</div>
-        <div class="hero-loc"><span class="pin">&#x1F4CD;</span> Kona (Fri&ndash;Sat) &mdash; Book below</div>
+        <div class="hero-loc"><span class="pin">&#x1F4CD;</span> Waimea (Tue&ndash;Thu)</div>
+        <div class="hero-loc"><span class="pin">&#x1F4CD;</span> Kona (Fri&ndash;Sat)</div>
       </div>
       <a href="#" onclick="openBooking(); return false;" class="hero-cta">
-        Book an appointment <span class="arrow">&rarr;</span>
+        Book Now <span class="arrow">&rarr;</span>
       </a>
     </div>
     <div class="hero-right"></div>
@@ -1255,23 +1255,11 @@
         <span class="price">$125</span>
         <span class="tag">Skin Treatments</span>
       </div>
-      <div class="service-row reveal reveal-delay-3" onclick="openBooking('korean-lash-lift')">
-        <h3>Korean Lash Lift</h3>
-        <p>Natural lash curl and lift that opens up your eyes. No extensions, no maintenance.</p>
-        <span class="price">$115</span>
-        <span class="tag">Lash Enhancements</span>
-      </div>
       <div class="service-row reveal reveal-delay-3" onclick="openBooking('lash-lift-tint')">
         <h3>Korean Lash Lift + Tint</h3>
         <p>Lifted, curled lashes with a rich tint for a bold, defined look.</p>
         <span class="price">$135</span>
         <span class="tag">Lash Enhancements</span>
-      </div>
-      <div class="service-row reveal reveal-delay-4" onclick="openBooking('brow-lamination')">
-        <h3>Brow Lamination</h3>
-        <p>Fluffy, brushed-up brows that stay in place. The effortless full-brow look.</p>
-        <span class="price">$80</span>
-        <span class="tag">The Brow Bar</span>
       </div>
       <div class="service-row reveal reveal-delay-4" onclick="openBooking('luxe-brow-set')">
         <h3>Kayy's Luxe Brow Set</h3>
@@ -1311,7 +1299,7 @@
     <div class="split-content">
       <div class="label reveal">About</div>
       <h2 class="reveal reveal-delay-1">Meet Mikayla</h2>
-      <p class="reveal reveal-delay-2">Licensed esthetician and permanent makeup artist based on the Big Island. Mikayla blends technique with artistry — every treatment is tailored, every result intentional.</p>
+      <p class="reveal reveal-delay-2">Licensed esthetician based on the Big Island. Mikayla blends technique with artistry — every treatment is tailored, every result intentional.</p>
       <a href="https://www.instagram.com/aesthetics_bykayy/" target="_blank" class="link reveal reveal-delay-3">
         Follow on Instagram &rarr;
       </a>
@@ -1380,17 +1368,9 @@
           <span class="svc-name">High Frequency Therapy Facial</span>
           <span class="svc-meta"><span class="svc-dur">1 hr</span><span class="svc-price">$125</span></span>
         </div>
-        <div class="service-option" data-service="korean-lash-lift" data-price="115" data-duration="1 hr">
-          <span class="svc-name">Korean Lash Lift</span>
-          <span class="svc-meta"><span class="svc-dur">1 hr</span><span class="svc-price">$115</span></span>
-        </div>
         <div class="service-option" data-service="lash-lift-tint" data-price="135" data-duration="1.5 hrs">
           <span class="svc-name">Korean Lash Lift + Tint</span>
           <span class="svc-meta"><span class="svc-dur">1.5 hrs</span><span class="svc-price">$135</span></span>
-        </div>
-        <div class="service-option" data-service="brow-lamination" data-price="80" data-duration="1 hr">
-          <span class="svc-name">Brow Lamination</span>
-          <span class="svc-meta"><span class="svc-dur">1 hr</span><span class="svc-price">$80</span></span>
         </div>
         <div class="service-option" data-service="luxe-brow-set" data-price="155" data-duration="1.5 hrs">
           <span class="svc-name">Kayy's Luxe Brow Set</span>
@@ -1454,6 +1434,14 @@
           <label>Notes (optional)</label>
           <textarea id="bookNotes" placeholder="Anything we should know?"></textarea>
         </div>
+        <div class="form-row">
+          <label>Promo Code (optional)</label>
+          <div style="display:flex;gap:0.5rem;align-items:stretch;">
+            <input type="text" id="bookPromo" placeholder="Enter code" style="flex:1;text-transform:uppercase;">
+            <button type="button" class="btn-next" onclick="applyPromo()" style="width:auto;padding:0.9rem 1.5rem;white-space:nowrap;">Apply</button>
+          </div>
+          <div id="promoMsg" style="font-size:0.75rem;margin-top:0.4rem;min-height:1.2em;"></div>
+        </div>
         <div class="booking-nav">
           <button class="btn-back" onclick="goStep(2)">&larr; Back</button>
           <button class="btn-next" onclick="goStep(4)">Review</button>
@@ -1468,6 +1456,8 @@
           <div class="summary-row"><span class="label">Date</span><span class="value" id="sumDate"></span></div>
           <div class="summary-row"><span class="label">Time</span><span class="value" id="sumTime"></span></div>
           <div class="summary-row"><span class="label">Price</span><span class="value" id="sumPrice"></span></div>
+          <div class="summary-row" id="sumDiscountRow" style="display:none;"><span class="label">Discount</span><span class="value" id="sumDiscount" style="color:var(--warm);"></span></div>
+          <div class="summary-row" id="sumTotalRow" style="display:none;"><span class="label" style="font-weight:500;color:var(--ink);">Total</span><span class="value" id="sumTotal" style="font-weight:500;"></span></div>
           <div class="summary-row"><span class="label">Name</span><span class="value" id="sumName"></span></div>
           <div class="summary-row"><span class="label">Contact</span><span class="value" id="sumContact"></span></div>
         </div>
@@ -1525,9 +1515,7 @@
       'glass-skin-facial': { name: 'Adorned Glass Skin Facial', price: '$175', duration: '1.5 hrs' },
       'led-facial': { name: 'LED Light Therapy Facial', price: '$125', duration: '1 hr' },
       'hf-facial': { name: 'High Frequency Therapy Facial', price: '$125', duration: '1 hr' },
-      'korean-lash-lift': { name: 'Korean Lash Lift', price: '$115', duration: '1 hr' },
       'lash-lift-tint': { name: 'Korean Lash Lift + Tint', price: '$135', duration: '1.5 hrs' },
-      'brow-lamination': { name: 'Brow Lamination', price: '$80', duration: '1 hr' },
       'luxe-brow-set': { name: "Kayy's Luxe Brow Set", price: '$155', duration: '1.5 hrs' },
       'brow-lam-tint': { name: 'Brow Lamination + Tint', price: '$125', duration: '1 hr' },
       'full-face-wax': { name: 'Full Face Wax', price: '$65', duration: '30 min' },
@@ -1536,6 +1524,65 @@
     };
 
     const timeSlots = ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '1:00 PM', '1:30 PM', '2:00 PM', '2:30 PM', '3:00 PM'];
+
+    // --- Promo Codes ---
+    // type: 'percent' or 'flat' | value: discount amount | min: minimum price to apply
+    const promoCodes = {
+      'GLOW10': { type: 'percent', value: 10, label: '10% off', min: 0 },
+      'ADORNED20': { type: 'percent', value: 20, label: '20% off', min: 100 },
+      'FIRST15': { type: 'percent', value: 15, label: '15% off — first visit', min: 0 },
+      'ISLAND25': { type: 'flat', value: 25, label: '$25 off', min: 100 },
+    };
+    let appliedPromo = null;
+
+    function applyPromo() {
+      const input = document.getElementById('bookPromo');
+      const msg = document.getElementById('promoMsg');
+      const code = input.value.trim().toUpperCase();
+
+      if (!code) {
+        msg.textContent = '';
+        msg.style.color = '';
+        appliedPromo = null;
+        return;
+      }
+
+      const promo = promoCodes[code];
+      if (!promo) {
+        msg.textContent = 'Invalid code';
+        msg.style.color = '#c0392b';
+        appliedPromo = null;
+        return;
+      }
+
+      // Check minimum
+      if (selectedService) {
+        const price = parseInt(services[selectedService].price.replace('$', ''));
+        if (price < promo.min) {
+          msg.textContent = 'Code requires $' + promo.min + '+ service';
+          msg.style.color = '#c0392b';
+          appliedPromo = null;
+          return;
+        }
+      }
+
+      appliedPromo = { code, ...promo };
+      msg.textContent = promo.label + ' applied!';
+      msg.style.color = '#27ae60';
+    }
+
+    function getDiscountedPrice(originalPrice) {
+      if (!appliedPromo) return null;
+      const price = parseInt(originalPrice.replace('$', ''));
+      if (price < appliedPromo.min) return null;
+      let discount = 0;
+      if (appliedPromo.type === 'percent') {
+        discount = Math.round(price * appliedPromo.value / 100);
+      } else {
+        discount = appliedPromo.value;
+      }
+      return { original: price, discount, final: price - discount };
+    }
 
     function openBooking(serviceId) {
       document.getElementById('bookingOverlay').classList.add('open');
@@ -1559,6 +1606,9 @@
       document.getElementById('bookPhone').value = '';
       document.getElementById('bookEmail').value = '';
       document.getElementById('bookNotes').value = '';
+      document.getElementById('bookPromo').value = '';
+      document.getElementById('promoMsg').textContent = '';
+      appliedPromo = null;
       resetToStep1();
     }
 
@@ -1597,9 +1647,25 @@
         document.getElementById('sumService').textContent = svc.name + ' (' + svc.duration + ')';
         document.getElementById('sumDate').textContent = selectedDate ? selectedDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }) : '';
         document.getElementById('sumTime').textContent = selectedTime || '';
-        document.getElementById('sumPrice').textContent = svc.price;
         document.getElementById('sumName').textContent = document.getElementById('bookName').value;
         document.getElementById('sumContact').textContent = document.getElementById('bookEmail').value + ' / ' + document.getElementById('bookPhone').value;
+
+        const discounted = getDiscountedPrice(svc.price);
+        if (discounted) {
+          document.getElementById('sumPrice').textContent = '$' + discounted.original;
+          document.getElementById('sumPrice').style.textDecoration = 'line-through';
+          document.getElementById('sumPrice').style.color = 'var(--muted)';
+          document.getElementById('sumDiscount').textContent = '-$' + discounted.discount + ' (' + appliedPromo.code + ')';
+          document.getElementById('sumTotal').textContent = '$' + discounted.final;
+          document.getElementById('sumDiscountRow').style.display = '';
+          document.getElementById('sumTotalRow').style.display = '';
+        } else {
+          document.getElementById('sumPrice').textContent = svc.price;
+          document.getElementById('sumPrice').style.textDecoration = '';
+          document.getElementById('sumPrice').style.color = '';
+          document.getElementById('sumDiscountRow').style.display = 'none';
+          document.getElementById('sumTotalRow').style.display = 'none';
+        }
       }
     }
 
@@ -1679,11 +1745,15 @@
 
     function submitBooking() {
       // Collect all data
+      const discounted = getDiscountedPrice(services[selectedService].price);
       const booking = {
         service: services[selectedService].name,
         date: selectedDate.toISOString(),
         time: selectedTime,
         price: services[selectedService].price,
+        promoCode: appliedPromo ? appliedPromo.code : null,
+        discount: discounted ? '$' + discounted.discount : null,
+        finalPrice: discounted ? '$' + discounted.final : services[selectedService].price,
         name: document.getElementById('bookName').value,
         phone: document.getElementById('bookPhone').value,
         email: document.getElementById('bookEmail').value,
