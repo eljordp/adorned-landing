@@ -396,6 +396,111 @@
       white-space: nowrap;
     }
 
+    .service-category {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--warm);
+      margin-top: 3.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .service-category:first-child { margin-top: 0; }
+
+    /* PACKAGES */
+    .package-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .package-card {
+      border: 1px solid rgba(0,0,0,0.08);
+      padding: 2.5rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .package-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--warm);
+    }
+
+    .package-card:hover {
+      border-color: var(--warm);
+      background: rgba(212,181,160,0.04);
+      transform: translateY(-2px);
+    }
+
+    .package-card .pkg-label {
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--warm);
+      margin-bottom: 1rem;
+    }
+
+    .package-card h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+
+    .package-card p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .package-card .pkg-includes {
+      font-size: 0.7rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .package-card .pkg-includes li::before {
+      content: '\2713';
+      color: var(--warm);
+      margin-right: 0.5rem;
+      font-weight: 600;
+    }
+
+    .package-card .pkg-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .package-card .pkg-price {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.8rem;
+      color: var(--ink);
+    }
+
+    .package-card .pkg-savings {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--warm);
+      background: rgba(212,181,160,0.15);
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+    }
+
     /* SPLIT SECTION */
     .split {
       display: grid;
@@ -1045,6 +1150,10 @@
         order: -1;
         font-size: 1.1rem;
       }
+      .package-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .package-card { padding: 2rem 1.5rem; }
+      .package-card h3 { font-size: 1.4rem; }
+      .service-category { margin-top: 2.5rem; }
       .service-row .tag {
         width: fit-content;
         font-size: 0.6rem;
@@ -1231,65 +1340,93 @@
       <span class="book-link" onclick="openBooking()">Book a service &rarr;</span>
     </div>
     <div class="service-list">
+      <!-- SKIN TREATMENTS -->
+      <div class="service-category reveal">Skin Treatments</div>
       <div class="service-row reveal reveal-delay-1" onclick="openBooking('adorned-glow-facial')">
         <h3>Kayy's Adorned Glow Facial</h3>
         <p>A customized facial designed to deeply cleanse, hydrate, and restore your natural glow.</p>
         <span class="price">$120</span>
-        <span class="tag">Skin Treatments</span>
+        <span class="tag">1 hr</span>
       </div>
       <div class="service-row reveal reveal-delay-1" onclick="openBooking('glass-skin-facial')">
         <h3>Adorned Glass Skin Facial</h3>
-        <p>Dermaplaning + LED light therapy. A luxury treatment that removes peach fuzz and dead skin for a smooth, glass-like radiance.</p>
+        <p>Dermaplaning + LED light therapy. Removes peach fuzz and dead skin for a smooth, glass-like radiance.</p>
         <span class="price">$175</span>
-        <span class="tag">Skin Treatments</span>
+        <span class="tag">1.5 hrs</span>
       </div>
       <div class="service-row reveal reveal-delay-2" onclick="openBooking('led-facial')">
         <h3>LED Light Therapy Facial</h3>
         <p>Targets acne, inflammation, and dullness while promoting collagen and skin healing.</p>
         <span class="price">$125</span>
-        <span class="tag">Skin Treatments</span>
+        <span class="tag">1 hr</span>
       </div>
       <div class="service-row reveal reveal-delay-2" onclick="openBooking('hf-facial')">
         <h3>High Frequency Therapy Facial</h3>
-        <p>Helps eliminate acne-causing bacteria and improve overall skin clarity.</p>
+        <p>Eliminates acne-causing bacteria and improves overall skin clarity.</p>
         <span class="price">$125</span>
-        <span class="tag">Skin Treatments</span>
+        <span class="tag">1 hr</span>
       </div>
-      <div class="service-row reveal reveal-delay-3" onclick="openBooking('lash-lift-tint')">
+
+      <!-- LASH ENHANCEMENTS -->
+      <div class="service-category reveal">Lash Enhancements</div>
+      <div class="service-row reveal reveal-delay-1" onclick="openBooking('lash-lift-tint')">
         <h3>Korean Lash Lift + Tint</h3>
         <p>Lifted, curled lashes with a rich tint for a bold, defined look.</p>
         <span class="price">$135</span>
-        <span class="tag">Lash Enhancements</span>
+        <span class="tag">1.5 hrs</span>
       </div>
-      <div class="service-row reveal reveal-delay-4" onclick="openBooking('luxe-brow-set')">
+
+      <!-- THE BROW BAR -->
+      <div class="service-category reveal">The Brow Bar</div>
+      <div class="service-row reveal reveal-delay-1" onclick="openBooking('luxe-brow-set')">
         <h3>Kayy's Luxe Brow Set</h3>
         <p>The full brow experience &mdash; lamination, tint, and wax for perfectly sculpted brows.</p>
         <span class="price">$155</span>
-        <span class="tag">The Brow Bar</span>
+        <span class="tag">1.5 hrs</span>
       </div>
-      <div class="service-row reveal reveal-delay-4" onclick="openBooking('brow-lam-tint')">
+      <div class="service-row reveal reveal-delay-2" onclick="openBooking('brow-lam-tint')">
         <h3>Brow Lamination + Tint</h3>
         <p>Fluffy, shaped brows with a custom tint for added definition.</p>
         <span class="price">$125</span>
-        <span class="tag">The Brow Bar</span>
+        <span class="tag">1 hr</span>
       </div>
-      <div class="service-row reveal reveal-delay-4" onclick="openBooking('full-face-wax')">
+      <div class="service-row reveal reveal-delay-2" onclick="openBooking('full-face-wax')">
         <h3>Full Face Wax</h3>
         <p>Complete facial hair removal for a smooth, clean canvas.</p>
         <span class="price">$65</span>
-        <span class="tag">Waxing</span>
+        <span class="tag">30 min</span>
       </div>
-      <div class="service-row reveal reveal-delay-4" onclick="openBooking('ultimate-lash-brow')">
-        <h3>Ultimate Lash &amp; Brow Package</h3>
-        <p>Korean lash lift + tint + Kayy's Luxe Brow Set. The complete eye transformation.</p>
-        <span class="price">$265</span>
-        <span class="tag">Signature Package</span>
+    </div>
+
+    <!-- SIGNATURE PACKAGES -->
+    <div class="service-category reveal" style="margin-top:4rem;margin-bottom:1.5rem;font-size:0.65rem;">Signature Packages</div>
+    <div class="package-grid">
+      <div class="package-card reveal reveal-delay-1" onclick="openBooking('ultimate-lash-brow')">
+        <div class="pkg-label">Best for Eyes</div>
+        <h3>Ultimate Lash &amp; Brow</h3>
+        <p>The complete eye transformation &mdash; walk in, walk out looking different.</p>
+        <ul class="pkg-includes">
+          <li>Korean Lash Lift + Tint</li>
+          <li>Kayy's Luxe Brow Set</li>
+        </ul>
+        <div class="pkg-bottom">
+          <span class="pkg-price">$265</span>
+          <span class="pkg-savings">Save $25</span>
+        </div>
       </div>
-      <div class="service-row reveal reveal-delay-4" onclick="openBooking('ultimate-glow')">
-        <h3>Ultimate Glow Package</h3>
-        <p>Adorned Glow Facial + lash lift &amp; tint + brow tint &amp; wax. A full beauty refresh.</p>
-        <span class="price">$285</span>
-        <span class="tag">Signature Package</span>
+      <div class="package-card reveal reveal-delay-2" onclick="openBooking('ultimate-glow')">
+        <div class="pkg-label">Best Value</div>
+        <h3>Ultimate Glow</h3>
+        <p>A full beauty refresh &mdash; skin, lashes, and brows in one session.</p>
+        <ul class="pkg-includes">
+          <li>Adorned Glow Facial</li>
+          <li>Korean Lash Lift + Tint</li>
+          <li>Brow Tint + Wax</li>
+        </ul>
+        <div class="pkg-bottom">
+          <span class="pkg-price">$285</span>
+          <span class="pkg-savings">Save $35</span>
+        </div>
       </div>
     </div>
   </section>
@@ -1352,6 +1489,8 @@
       <!-- Step 1: Service -->
       <div class="booking-step active" id="step1">
         <div class="step-label">Step 1 &mdash; Choose a Service</div>
+
+        <div class="step-label" style="color:var(--muted);margin-bottom:0.75rem;margin-top:0;">Skin Treatments</div>
         <div class="service-option" data-service="adorned-glow-facial" data-price="120" data-duration="1 hr">
           <span class="svc-name">Kayy's Adorned Glow Facial</span>
           <span class="svc-meta"><span class="svc-dur">1 hr</span><span class="svc-price">$120</span></span>
@@ -1368,10 +1507,14 @@
           <span class="svc-name">High Frequency Therapy Facial</span>
           <span class="svc-meta"><span class="svc-dur">1 hr</span><span class="svc-price">$125</span></span>
         </div>
+
+        <div class="step-label" style="color:var(--muted);margin-bottom:0.75rem;margin-top:1.25rem;">Lash Enhancements</div>
         <div class="service-option" data-service="lash-lift-tint" data-price="135" data-duration="1.5 hrs">
           <span class="svc-name">Korean Lash Lift + Tint</span>
           <span class="svc-meta"><span class="svc-dur">1.5 hrs</span><span class="svc-price">$135</span></span>
         </div>
+
+        <div class="step-label" style="color:var(--muted);margin-bottom:0.75rem;margin-top:1.25rem;">The Brow Bar</div>
         <div class="service-option" data-service="luxe-brow-set" data-price="155" data-duration="1.5 hrs">
           <span class="svc-name">Kayy's Luxe Brow Set</span>
           <span class="svc-meta"><span class="svc-dur">1.5 hrs</span><span class="svc-price">$155</span></span>
@@ -1384,12 +1527,14 @@
           <span class="svc-name">Full Face Wax</span>
           <span class="svc-meta"><span class="svc-dur">30 min</span><span class="svc-price">$65</span></span>
         </div>
-        <div class="service-option" data-service="ultimate-lash-brow" data-price="265" data-duration="2.5 hrs">
-          <span class="svc-name">Ultimate Lash & Brow Package</span>
+
+        <div class="step-label" style="color:var(--warm);margin-bottom:0.75rem;margin-top:1.25rem;">Signature Packages</div>
+        <div class="service-option" data-service="ultimate-lash-brow" data-price="265" data-duration="2.5 hrs" style="border-color:rgba(212,181,160,0.3);">
+          <span class="svc-name">Ultimate Lash & Brow</span>
           <span class="svc-meta"><span class="svc-dur">2.5 hrs</span><span class="svc-price">$265</span></span>
         </div>
-        <div class="service-option" data-service="ultimate-glow" data-price="285" data-duration="3 hrs">
-          <span class="svc-name">Ultimate Glow Package</span>
+        <div class="service-option" data-service="ultimate-glow" data-price="285" data-duration="3 hrs" style="border-color:rgba(212,181,160,0.3);">
+          <span class="svc-name">Ultimate Glow</span>
           <span class="svc-meta"><span class="svc-dur">3 hrs</span><span class="svc-price">$285</span></span>
         </div>
         <div class="booking-nav">
