@@ -1851,7 +1851,8 @@
         </div>
         <div class="booking-nav">
           <button class="btn-back" onclick="goStep(3)">&larr; Back</button>
-          <button class="btn-next" onclick="submitBooking()">Confirm Booking</button>
+          <button class="btn-next" id="confirmBtn" onclick="submitBooking()">Confirm Booking</button>
+          <div id="bookingError" style="display:none;color:#c0392b;font-size:0.85rem;margin-top:0.75rem;text-align:center;width:100%;"></div>
         </div>
       </div>
 
@@ -2133,8 +2134,9 @@
       document.getElementById('toStep3').disabled = !(selectedDate && selectedTime);
     }
 
-    function submitBooking() {
-      // Collect all data
+    async function submitBooking() {
+      const btn = document.getElementById('confirmBtn');
+      const errEl = document.getElementById('bookingError');
       const discounted = getDiscountedPrice(services[selectedService].price);
       const booking = {
         service: services[selectedService].name,
@@ -2151,13 +2153,35 @@
         submitted: new Date().toISOString()
       };
 
-      // Store locally (can connect to backend/email later)
-      const bookings = JSON.parse(localStorage.getItem('abk_bookings') || '[]');
-      bookings.push(booking);
-      localStorage.setItem('abk_bookings', JSON.stringify(bookings));
+      // Local backup so a booking is never silently lost
+      try {
+        const bookings = JSON.parse(localStorage.getItem('abk_bookings') || '[]');
+        bookings.push(booking);
+        localStorage.setItem('abk_bookings', JSON.stringify(bookings));
+      } catch {}
 
-      console.log('New booking:', booking);
-      goStep(5);
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      errEl.style.display = 'none';
+
+      try {
+        const res = await fetch('/api/booking', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(booking)
+        });
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          throw new Error(data.error || 'Could not send booking');
+        }
+        goStep(5);
+      } catch (e) {
+        errEl.textContent = e.message + ' — or DM @aesthetics_bykayy on Instagram to book.';
+        errEl.style.display = 'block';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Confirm Booking';
+      }
     }
 
     // Close on overlay click
